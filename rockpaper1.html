@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding-top: 50px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .choices button {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .result {
+      margin-top: 30px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rock Paper Scissors</h1>
+  <div class="choices">
+    <button onclick="play('rock')">🪨 Rock</button>
+    <button onclick="play('paper')">📄 Paper</button>
+    <button onclick="play('scissors')">✂️ Scissors</button>
+  </div>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function play(userChoice) {
+      const choices = ['rock', 'paper', 'scissors'];
+      const computerChoice = choices[Math.floor(Math.random() * 3)];
+      let result = '';
+
+      if (userChoice === computerChoice) {
+        result = "It's a draw!";
+      } else if (
+        (userChoice === 'rock' && computerChoice === 'scissors') ||
+        (userChoice === 'paper' && computerChoice === 'rock') ||
+        (userChoice === 'scissors' && computerChoice === 'paper')
+      ) {
+        result = `You Win! ${userChoice} beats ${computerChoice}`;
+      } else {
+        result = `You Lose! ${computerChoice} beats ${userChoice}`;
+      }
+
+      document.getElementById('result').innerHTML = `
+        You chose: <strong>${userChoice}</strong><br>
+        Computer chose: <strong>${computerChoice}</strong><br>
+        <strong>${result}</strong>
+      `;
+    }
+  </script>
+</body>
+</html>
